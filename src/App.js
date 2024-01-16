@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Todos from "./Todos";
+import List from "./List";
+import { useState } from "react";
+import { v4 as uuid4 } from "uuid";
+
+uuid4();
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  const addTodo = (todo) => {
+    setTodos([
+      ...todos,
+      { id: uuid4(), task: todo, completed: false, isEditing: false },
+    ]);
+    console.log(todos);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Todos addTodo={addTodo}></Todos>{" "}
+      {todos.map((todo, i) => (
+        <List task={todo} key={i}></List>
+      ))}
     </div>
   );
 }
