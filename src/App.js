@@ -17,7 +17,10 @@ function App() {
     console.log(todos);
   };
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={{ color: "#142473", backgroundColor: "#fff", paddingTop: 20 }}
+    >
       <Todos addTodo={addTodo}></Todos>{" "}
       {todos.map((todo, i) => (
         <List task={todo} key={i}></List>
